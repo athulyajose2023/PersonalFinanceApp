@@ -2,10 +2,9 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
-    alias(libs.plugins.kotlin.kapt)
+    alias(libs.plugins.ksp)
     alias(libs.plugins.hilt.android)
-
-
+    kotlin("kapt")
 }
 
 android {
@@ -64,22 +63,22 @@ dependencies {
     implementation(libs.navigation.compose)
 
     implementation(libs.room.runtime)
-    kapt(libs.room.compiler)
+    ksp(libs.room.compiler)
     implementation(libs.room.ktx)
 
     implementation(libs.coroutines.core)
     implementation(libs.coroutines.android)
 
-    implementation("io.github.PhilJay:MPAndroidChart:3.1.0") {
-        exclude(group = "com.android.support")
-    }
+
 
 
     implementation(libs.hilt.android)
     kapt(libs.hilt.compiler)
-    implementation(libs.hilt)
 
-    implementation("com.google.dagger:hilt-android:2.50")
-    kapt("com.google.dagger:hilt-compiler:2.50")
-    implementation("androidx.hilt:hilt-navigation-compose:1.1.0")
+    kapt(libs.hilt.compiler)
+    implementation(libs.hilt.navigation.compose)
+
+
+    // Explicitly add JavaPoet (latest stable version)
+    implementation (libs.javapoet)
 }
